@@ -4,12 +4,17 @@
 
 # Controller for Sudoku
 
+GET     /                           controllers.BlockpuzzleController.woodblock
 
-GET     /                           controllers.SudokuController.sudoku
-GET     /new                        controllers.SudokuController.newGrid
-GET     /resize/:size                      controllers.SudokuController.resize(size:Int)
+GET     /about                      controllers.BlockpuzzleController.about
 
-GET     /about                      controllers.SudokuController.about
+GET    /reset                       controllers.BlockpuzzleController.reset
+
+GET    /add/:b/:x/:y                controllers.BlockpuzzleController.add(b:Int, x:Int, y:Int)
+
+GET    /g                           controllers.BlockpuzzleController.giveup
+
+GET    /r                           controllers.BlockpuzzleController.reverse
 
 
 # Map static resources from the /public folder to the /assets URL path

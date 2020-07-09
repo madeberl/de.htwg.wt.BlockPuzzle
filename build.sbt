@@ -1,5 +1,5 @@
 
-name := """Sudoku in Scala for WebTech"""
+name := """BlockPuzzle in Scala for WebTech"""
 
 version := "1.3"
 
@@ -7,7 +7,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
-scalaVersion := "2.12.7"
+scalaVersion := "2.12.4"
 
 libraryDependencies += guice
 

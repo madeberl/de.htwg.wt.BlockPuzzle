@@ -1,87 +1,95 @@
 @()
 
-@main("HTWG Sudoku") {
-
-    <h1>About Sudoku</h1>
-
-    <p>
-        Sudoku is a logic-based, combinatorial number-placement puzzle.
-        The objective is to fill a 9×9 grid with digits so that each column, each row, and
-        each of the nine 3×3 subgrids that compose the grid (also called "houses", "blocks",
-        or "regions") contains all of the digits from 1 to 9. The puzzle setter provides a
-        partially completed grid, which for a well-posed puzzle has a single solution.
-    </p>
-
-    <p>
-        Completed games are always a type of Latin square with an additional constraint on
-        the contents of individual regions. For example, the same single integer may not appear
-        twice in the same row, column, or any of the nine 3×3 subregions of the 9x9 playing board.
-    </p>
-
-    <p>
-        The following image shows a typical Sudoku puzzle. <br>
-        <img src=@routes.Assets.versioned("images/Sudoku_Puzzle.png")>
-    </p>
-
-    <p>
-        The solution to this puzzle is shown below. <br>
-        <img src=@routes.Assets.versioned("images/Sudoku_Puzzle_solved.png")>
-    </p>
-
-    <h1>Historic Background</h1>
-
-    <p>
-        Number puzzles appeared in newspapers in the late 19th century, when French puzzle setters
-        began experimenting with removing numbers from magic squares. Le Siècle, a Paris daily,
-        published a partially completed 9×9 magic square with 3×3 subsquares on November 19, 1892.
-        It was not a Sudoku because it contained double-digit numbers and required arithmetic rather
-        than logic to solve, but it shared key characteristics: each row, column and subsquare added
-        up to the same number.
-    </p>
-
-    <p>
-        On July 6, 1895, Le Siècle's rival, La France, refined the puzzle so that it was almost a
-        modern Sudoku. It simplified the 9×9 magic square puzzle so that each row, column, and broken
-        diagonals contained only the numbers 1–9, but did not mark the subsquares. Although they are
-        unmarked, each 3×3 subsquare does indeed comprise the numbers 1–9 and the additional constraint
-        on the broken diagonals leads to only one solution.
-    </p>
-
-    <p>
-        These weekly puzzles were a feature of French newspapers such as L'Echo de Paris for about a
-        decade, but disappeared about the time of World War I.
-    </p>
-
-    <p>
-        The modern Sudoku was most likely designed anonymously by Howard Garns, a 74-year-old retired
-        architect and freelance puzzle constructor from Connersville, Indiana, and first published in
-        1979 by Dell Magazines as Number Place (the earliest known examples of modern Sudoku).
-        Garns's name was always present on the list of contributors in issues of Dell Pencil Puzzles
-        and Word Games that included Number Place, and was always absent from issues that did not.
-        He died in 1989 before getting a chance to see his creation as a worldwide phenomenon.
-    </p>
-
-    <p>
-        The puzzle was introduced in Japan by Nikoli in the paper Monthly Nikolist in April 1984 as
-        Sūji wa dokushin ni kagiru, which also can be translated as "the digits must be single" or
-        "the digits are limited to one occurrence" (In Japanese, dokushin means an "unmarried person").
-        At a later date, the name was abbreviated to Sudoku by Maki Kaji, taking only the first kanji
-        of compound words to form a shorter version. "Sudoku" is a registered trademark in Japan and
-        the puzzle is generally referred to as Number Place or, more informally, a portmanteau of the
-        two words, Num(ber) Pla(ce). In 1986, Nikoli introduced two innovations:
-<ul>
-    <li>the number of givens was restricted to no more than 32, and </li>
-    <li>puzzles became "symmetrical" (meaning the givens were distributed in rotationally symmetric
-        cells).</li>
-</ul>
-    </p>
-
-    <p>
-        The Times began featuring Sudoku in late 2004 after a successful appearance in a local US newspaper,
-        from the efforts of Wayne Gould, and rapidly spread to other newspapers as a regular feature.
-        Gould devised a computer program to produce unique puzzles rapidly.
-    </p>
-
-
+@main("Block Puzzle") {
+    <html>
+        <body>
+            <h1>About Block Puzzle</h1>
+            <p>
+                <h3>Origin/Herkunt</h3>
+                WoodBlockPuzzle is a game based on the idea of <a href="https://de.wikipedia.org/wiki/Tetris">Tetris</a>.<br>
+                Blocks must be placed in a limited space and, if possible, form closed rows which then dissolve. Full rows vanish an the player get points for that.
+                This goes on until the new blocks appear too fast to be used properly. The player gets under time pressure, makes mistakes and finally there is no more room for new blocks.
+            <br><b>Game over.</b>
+            </p>
+            <p>
+                <h3>Difference to <a href="https://de.wikipedia.org/wiki/Tetris">Tetris</a></h3>
+                WoodBlockPuzzle can be viewed as a game with a tetris-like feel, without the aspect of time pressure.<br>
+                Instead of moving blocks and the idea to insert these blocks quickly, everything is built like a puzzle, which can be thought about as long as you want.
+                <br>The size of the gird is 8x8 in this case.
+            </p>
+            <p>
+                <h3>Rules</h3>
+                You will start with an empty field and 3 random generated blocks.<br>
+            </p>
+            <table border = "1">
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+            </table>
+            <table>
+                <tr><td>
+                    <table border = "1">
+                    <tr><td>x__x__x</td></tr>
+                    <tr><td>x__x__x</td></tr>
+                    <tr><td>x__x__x</td></tr>
+                    </table>
+                </td><td>
+                    <table border = "1">
+                        <tr><td>x__x__x</td></tr>
+                        <tr><td>______x</td></tr>
+                    </table>
+                </td><td>
+                    <table border = "1">
+                        <tr><td>x__x</td></tr>
+                        <tr><td>___x</td></tr>
+                    </table>
+                </td></tr>
+            </table>
+            <p>
+                Insert this Blocks at any free position in the field, to get a full row or column.<br>
+                In this Example, we insert all blocks in a row at the top, connecting them to a full row.
+            </p>
+            <table border = "1">
+                <tr><td>x__x__x__x__x__x__x__x</td></tr>
+                <tr><td>x__x__x__0__0__x__0__x</td></tr>
+                <tr><td>x__x__x__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+                <tr><td>0__0__0__0__0__0__0__0</td></tr>
+            </table>
+            <table>
+                <tr><td>
+                    <table border = "1">
+                        <tr><td>_</td></tr>
+                    </table>
+                </td><td>
+                    <table border = "1">
+                        <tr><td>_</td></tr>
+                    </table>
+                </td><td>
+                    <table border = "1">
+                    <tr><td>_</td></tr>
+                </table>
+                </td></tr>
+            </table>
+            <p>
+                <h3>Collect Points</h3>
+                Full rows or columns earn points for the player. After that the cells are free again.<br>
+                If all three existing blocks have been used, three new ones will appear and so on.
+            </p>
+            <p>
+                <h3>End of the Game</h3>
+                The game could theoretically continue endless, but it is over when the player can no longer use any of his given blocks. He is forced to give up.
+                This saves the player's current high score, which he then has to beat in a new attempt.
+            </p>
+        </body>
+    </html>
 
 }
