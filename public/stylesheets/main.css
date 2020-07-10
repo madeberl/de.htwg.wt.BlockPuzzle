@@ -1,67 +1,61 @@
 :root{
-    --cell-size: 3.3vw;
+    --cell-size: 2.5vw;
     --block-cell-size: 2.5vw;
-    --block: 12.5vw;
+    --block: 2.5vw;
     --game: 30vw;
 }
-.imageBackground{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -100;
-    opacity: 50%;
+
+h1, h3{
+    font-family: "Verdana", Geneva, sans-serif;
+    color: black;
 }
-.gameImageBackground{
+
+.game {
     position: absolute;
+    left: 35vw;
+    width: auto;
+    height: auto;
+    padding: 1vw;
+}
+
+.imageBackground {
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -50;
-    opacity: 100%;
+    opacity: 50%;
 }
 
-.aboutBackground {
+.infos {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 300%;
-    z-index: -100;
-    opacity: 0.3;
-}
-
-h1, h3{
-    font-family: "Comic Sans MS", Comic Sans, cursive;
-}
-.BlockPuzzleController{
-    /*             display: inline-block;
-                margin-right: 20vw;
-                margin-left: 20vw;
-                border-style: solid;
-                width: 60vw;
-                height: 50%; */
-}
-.game {
-    position: absolute;
-    left: 31vw;
-    width: var(--game);
-    height: var(--game);
-    padding: 1vw;
+    width: 30vw;
+    height: 30vw;
     display: inline-block;
-    /*     background-color: blue; */
-    border-style: solid;
-
+    top: 7vw;
+    left: 25vw;
 }
+
+.infos2 {
+    position: absolute;
+    width: 30vw;
+    height: 30vw;
+    display: inline-block;
+    top: 7vw;
+    left: 60vw;
+}
+
 .cellRow{
     display: block;
 }
+
 .cell{
     height: var(--cell-size);
     width: var(--cell-size);
     display:inline-block;
+    background-color: black;
 }
+
 .clear{
     border-style:solid;
     background-color: white;
@@ -69,65 +63,61 @@ h1, h3{
     width: 100%;
     opacity: 50%;
 }
+
 .set{
     border-style:solid;
-    background-color: green;
+    background-color: blue;
     height: 100%;
     width: 100%;
 }
+
 .blocks{
     position: absolute;
-    left:25vw;
-    top: 43vw;
+    left:23.5vw;
+    top:32vw;
     width: auto;
     height: auto;
-    /*     border-style: solid; */
-
 }
+
 .block{
-    float:left;
-    width: 14.5vw;
-    height: 14.5vw;
+    float: left;
+    width: 13vw;
+    height: 13vw;
     margin: 0.3vw;
-    padding: 0.3vw;
-    /*     border-style: solid; */
+    padding: 1vw;
+    background-color: grey;
     box-shadow: 0px 0px 8px 8px rgba(0,0,0,0.3)
 }
-
 
 .blockCell{
     height: var(--block-cell-size);
     width: var(--block-cell-size);
-    display:inline-block;
+    display: inline-block;
+
+
 }
-.blockClear{
-    /*clear cell*/
-}
+
 .blockSet{
     border-style: solid;
-    background-color: green;
+    background-color: blue;
     height: 100%;
     width: 100%;
-}
-.infos{
-    position: absolute;
-    width: 30vw;
-    height: 30vw;
-    display: inline-block;
-    /*     background-color: darkgrey; */
 
 }
-#text{
-    font-family: "Comic Sans MS", Comic Sans, cursive;
+
+.about {
+    height: 100%;
+    width: 100%;
+    margin: 1em;
+    font-size:14px;
+    font-family: "Verdana",Geneva, sans-serif;
+    color:black;
+    position: relative;
 }
 
-#about-body {
-    text-align: center;
-    font-family: "Comic Sans MS", Comic Sans, cursive;
+#text {
+    font-family: "Verdana",Geneva, sans-serif;
+    color:black;
+    font-size: 18px;
 }
 
-table {
-    position:relative;
-    left: 35%;
-    margin: 5px
-}

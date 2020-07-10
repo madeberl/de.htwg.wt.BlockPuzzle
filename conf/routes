@@ -8,13 +8,13 @@ GET     /                           controllers.BlockpuzzleController.woodblock
 
 GET     /about                      controllers.BlockpuzzleController.about
 
-GET    /reset                       controllers.BlockpuzzleController.reset
+GET    /r                           controllers.BlockpuzzleController.reset
 
 GET    /add/:b/:x/:y                controllers.BlockpuzzleController.add(b:Int, x:Int, y:Int)
 
 GET    /g                           controllers.BlockpuzzleController.giveup
 
-GET    /r                           controllers.BlockpuzzleController.reverse
+GET    /u                           controllers.BlockpuzzleController.undo
 
 
 # Map static resources from the /public folder to the /assets URL path

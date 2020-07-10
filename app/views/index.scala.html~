@@ -1,0 +1,28 @@
+@()
+
+@main("Block Puzzle") {
+    <div class="about">
+        <h1>About Block Puzzle</h1>
+        <h2>Block Puzzle Rules</h2>
+        <div id="text" >
+            <p>Block Puzzle ist ein Spiel basierend auf dem Spiel <a href="https://de.wikipedia.org/wiki/Tetris">Tetris</a>. </p>
+            <p>Es werden jeweils 3 Blöcke angezeigt, welche in einem Spielfeld mit 8x8 Feldern plaziert werden müssen.
+                Ziel des Spiels ist es Reihen oder Spalten durchgehend mit den Blöcken zu füllen. </p>
+            <p>Sobald eine Reihe oder Spalte
+                gefüllt ist verschwindet sie, wie bei Tetris.</p>
+            <p>Das Spiel ist ein Endlosspiel, es gibt kein natürliches Ende. Für das plazieren der Blöcke kann man sich so
+                viel Zeit nehmen wie man will. </p>
+            <p>Beendet ist das Spiel entweder wenn keine Lust mehr hat oder wenn
+                keine Blöcke im Spielfeld mehr plaziert werden können</p>
+
+            <p>
+                Man startet mit einem leeren Spielfeld und 3 zufällig generierten Blöcken: <br><br>
+                <img height="400" src=@routes.Assets.versioned("images/Blockpuzzle.png") width="300">
+            </p>
+            <p>
+                Danach kann man die Blöcke frei auf dem Spielfeld verteilen, wenn alle 3 Blöcke verteilt wurden, entstehen 3 neue Blöcke.
+            </p>
+        </div>
+    </div>
+}
+

@@ -22,7 +22,6 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) extends Abstrac
         }
 
         def woodblock = Action {
-                //  Ok(getText)
                 Ok(views.html.BlockPuzzle(gameController))
         }
 
@@ -35,7 +34,7 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) extends Abstrac
                 Ok(views.html.BlockPuzzle(gameController))
         }
 
-        def reverse = Action {
+        def undo = Action {
                 gameController.reverse()
                 Ok(views.html.BlockPuzzle(gameController))
         }
