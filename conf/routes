@@ -12,13 +12,13 @@ GET    /reset                       controllers.BlockpuzzleController.reset
 
 GET    /add/:b/:x/:y                controllers.BlockpuzzleController.add(b:Int, x:Int, y:Int)
 
-GET    /addChosen/:x/:y             controllers.BlockpuzzleController.addChosen(x:Int, y:Int)
+GET    /addChoosen/:x/:y            controllers.BlockpuzzleController.addChosen(x:Int, y:Int)
 
-GET    /setChoosen/:b                controllers.BlockpuzzleController.setChosen(b:Int)
+GET    /setChoosen/:b               controllers.BlockpuzzleController.setChosen(b:Int)
 
-GET    /g                           controllers.BlockpuzzleController.giveup
+GET    /giveup                           controllers.BlockpuzzleController.giveup
 
-GET    /u                           controllers.BlockpuzzleController.undo
+GET    /undo                           controllers.BlockpuzzleController.undo
 
 
 # Map static resources from the /public folder to the /assets URL path

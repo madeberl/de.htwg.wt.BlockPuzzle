@@ -5,9 +5,8 @@ import play.api.mvc._
 import de.htwg.se.blockpuzzle.BlockPuzzle
 
 @Singleton
-class BlockpuzzleController @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
+class BlockpuzzleController @Inject() (cc: ControllerComponents) extends AbstractController(cc){
         val gameController = BlockPuzzle.controller
-
 
         def getText(): String ={
                 var BlockPuzzleastext = "COUNT: "+ gameController.returnCount + "\t HIGHSCORE: "+ gameController.returnHighscore +
@@ -33,7 +32,6 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) extends Abstrac
                 gameController.addBlock(b,x,y)
                 Ok(views.html.BlockPuzzle(gameController))
         }
-
         def addChosen(x:Int, y:Int)= Action{
                 gameController.addBlock(gameController.getChosenBlock(),x,y)
                 Ok(views.html.BlockPuzzle(gameController))

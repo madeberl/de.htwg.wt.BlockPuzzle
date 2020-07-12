@@ -2,7 +2,7 @@
     --cell-size: 3.0vw;
     --block-cell-size: 2.5vw;
     --block: 1.5vw;
-    --game: 26vw;
+    --game: 27vw;
 }
 .imageBackground{
     position: absolute;
@@ -31,6 +31,10 @@ h1, h3{
 .blockcontainer {
     text-align: center;
     vertical-align: center;
+}
+
+.box {
+    margin-right: -9%;
 }
 
 #game {
@@ -73,7 +77,7 @@ h1, h3{
 
 #blocks{
     padding-top: 1%;
-    align-content: center;
+    padding-left: 1.5%;
 }
 
 .block{

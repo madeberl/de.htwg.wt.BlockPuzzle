@@ -17,10 +17,10 @@
                         Options
                     </a>
                     <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
-                        <a class="dropdown-item" href="/reset">New Game</a>
+                        <a class="dropdown-item" href="/reset" onclick="return confirm('Sind Sie sicher? Alle Fortschritte gehen verloren')">New Game</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/u">Undo</a>
-                        <a class="dropdown-item" href="/g">Give it up</a>
+                        <a class="dropdown-item" href="/undo">Undo</a>
+                        <a class="dropdown-item" href="/giveup">Give it up</a>
                     </div>
                 </li>
                 <li class="nav-link">
@@ -51,7 +51,7 @@
                 @for(col <- 1 to size){
                     <div class="cellRow">
                     @for(row <- 1 to size) {
-                        <a href="/addChosen/@row/@col">
+                        <div class="cell" id="/@row/@col">
                             <div class="cell">
                             @if(controller.getCellStatusAtField(row,col)==0){
                                 <div class="clear"></div>
@@ -59,7 +59,7 @@
                                 <div class="set"></div>
                             }
                             </div>
-                        </a>
+                        </div>
                     }
                     </div>
                 }
@@ -68,24 +68,24 @@
         @*Section for the 3 Blocks*@
         <div class="blockcontainer">
             <div class="row justify-content-center">
-                <a href="/setChoosen/1">
+                   <div class="col-3 box">
+                       <div class="block">
+                           <div  id="1" onclick="nextMove(this);">
+                                @for(col <- 0 until controller.b1.blockmaxy){
+                                    <div class="cellRow">
+                                    @for(row <- 0 until controller.b1.blockmaxx) {
+                                        <div class="blockCell">
+                                        @if(controller.getCellStatusAtBlock(1,row,col)==0){<div class="blockClear"></div>
+                                        }else{ <div class="blockSet"></div> }
+                                        </div>
+                                    }
+                                    </div>
+                                }</div>
+                        </div>
+                   </div>
                     <div class="col-3 box">
                         <div class="block">
-                        @for(col <- 0 until controller.b1.blockmaxy){
-                            <div class="cellRow">
-                            @for(row <- 0 until controller.b1.blockmaxx) {
-                                <div class="blockCell">
-                                @if(controller.getCellStatusAtBlock(1,row,col)==0){<div class="blockClear"></div>
-                                }else{ <div class="blockSet"></div> }
-                                </div>
-                            }
-                            </div>
-                        }</div>
-                    </div>
-                </a>
-                <a href="/setChoosen/2">
-                    <div class="col-3 box">
-                        <div class="block">
+                            <div  id="2" onclick="nextMove(this);">
                         @for(col <- 0 until controller.b2.blockmaxy){
                             <div class="cellRow">
                             @for(row <- 0 until controller.b2.blockmaxx) {
@@ -97,10 +97,10 @@
                             </div>
                         }</div>
                     </div>
-                </a>
-                <a href="/setChoosen/3">
+                    </div>
                     <div class="col-3 box">
                         <div class="block">
+                            <div  id="3" onclick="nextMove(this);">
                         @for(col <- 0 until controller.b3.blockmaxy){
                             <div class="cellRow">
                             @for(row <- 0 until controller.b3.blockmaxx) {
@@ -112,12 +112,12 @@
                             </div>
                         }</div>
                     </div>
-                </a>
+                    </div>
             </div>
         </div>
-    </div>
+     </div>
 }
-    <div class="center">
-        <img class="imageBackground" src=@routes.Assets.versioned("images/background.jpg")>
-    </div>
+<div class="center">
+    <img class="imageBackground" src=@routes.Assets.versioned("images/background.jpg")>
+</div>
 
