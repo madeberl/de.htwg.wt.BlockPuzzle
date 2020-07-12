@@ -34,6 +34,15 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) extends Abstrac
                 Ok(views.html.BlockPuzzle(gameController))
         }
 
+        def addChosen(x:Int, y:Int)= Action{
+                gameController.addBlock(gameController.getChosenBlock(),x,y)
+                Ok(views.html.BlockPuzzle(gameController))
+        }
+        def setChosen(b:Int)= Action{
+                gameController.setChosenBlock(b)
+                Ok(views.html.BlockPuzzle(gameController))
+        }
+
         def undo = Action {
                 gameController.reverse()
                 Ok(views.html.BlockPuzzle(gameController))

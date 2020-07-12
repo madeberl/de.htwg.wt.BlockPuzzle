@@ -8,9 +8,13 @@ GET     /                           controllers.BlockpuzzleController.woodblock
 
 GET     /about                      controllers.BlockpuzzleController.about
 
-GET    /r                           controllers.BlockpuzzleController.reset
+GET    /reset                       controllers.BlockpuzzleController.reset
 
 GET    /add/:b/:x/:y                controllers.BlockpuzzleController.add(b:Int, x:Int, y:Int)
+
+GET    /addChosen/:x/:y             controllers.BlockpuzzleController.addChosen(x:Int, y:Int)
+
+GET    /setChoosen/:b                controllers.BlockpuzzleController.setChosen(b:Int)
 
 GET    /g                           controllers.BlockpuzzleController.giveup
 
