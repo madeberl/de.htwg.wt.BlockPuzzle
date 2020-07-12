@@ -4,9 +4,9 @@
 
 # Controller for Sudoku
 
-GET     /                           controllers.BlockpuzzleController.woodblock
+GET    /                           controllers.BlockpuzzleController.woodblock
 
-GET     /about                      controllers.BlockpuzzleController.about
+GET    /about                      controllers.BlockpuzzleController.about
 
 GET    /reset                       controllers.BlockpuzzleController.reset
 
