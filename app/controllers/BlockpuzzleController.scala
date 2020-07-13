@@ -3,6 +3,9 @@ package controllers
 import javax.inject._
 import play.api.mvc._
 import de.htwg.se.blockpuzzle.BlockPuzzle
+import play.api.libs.json.{JsObject, JsValue, Json}
+import play.api.libs.json.Json._
+import de.htwg.se.blockpuzzle.controller.Controller
 
 @Singleton
 class BlockpuzzleController @Inject() (cc: ControllerComponents) extends AbstractController(cc){
@@ -48,5 +51,21 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) extends Abstrac
         def giveup = Action {
                 gameController.giveup
                 Ok(views.html.BlockPuzzle(gameController))
+        }
+
+        def fieldToJson(controller: Controller): JsObject = {
+                obj(
+                        "b1" -> toJson(controller.b1.toString()),
+                        "b2" -> toJson(controller.b2.toString()),
+                        "b3" -> toJson(controller.b3.toString()),
+                        "field" -> toJson(controller.field.toString()),
+                        "count"-> toJson(controller.returnCount.toString),
+                        "highscore" -> toJson(controller.returnHighscore.toString),
+                        "statusText" -> toJson(controller.statusText.toString())
+                )
+        }
+
+        def actionJson = Action {
+                Ok(fieldToJson(gameController))
         }
 }

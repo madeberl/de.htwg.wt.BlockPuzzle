@@ -3,7 +3,6 @@
 
 
 @main("HTWG Block Puzzle") {
-    @*<script src='@routes.Assets.versioned("javascripts/bootstrap.min.js")'> </script>*@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="/">HTWG Block Puzzle</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -17,7 +16,7 @@
                         Options
                     </a>
                     <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
-                        <a class="dropdown-item" href="/reset" onclick="return confirm('Sind Sie sicher? Alle Fortschritte gehen verloren')">New Game</a>
+                        <a id="new" class="dropdown-item" href="/reset">New Game</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/undo">Undo</a>
                         <a class="dropdown-item" href="/giveup">Give it up</a>
@@ -28,11 +27,11 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <span class="navbar-text">
+                <span class="navbar-text" id="count">
                     @{"Punkte: "+controller.returnCount}
                 </span>
                 <li role="separator" class="divider"></li>
-                <span class="navbar-text">
+                <span class="navbar-text" id="highscore">
                     @{"Highscore: "+controller.returnHighscore}
                 </span>
             </ul>
@@ -47,18 +46,16 @@
                 </div>
             </div>
             @*Section for field*@
-            <div class="col-sm-4" id="game" align="center">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12" id="game" align="center">
                 @for(col <- 1 to size){
                     <div class="cellRow">
                     @for(row <- 1 to size) {
-                        <div class="cell" id="/@row/@col">
-                            <div class="cell">
-                            @if(controller.getCellStatusAtField(row,col)==0){
-                                <div class="clear"></div>
-                            }else{
-                                <div class="set"></div>
-                            }
-                            </div>
+                        <div class="cell" id="@row/@col">
+                        @if(controller.getCellStatusAtField(row,col)==0){
+                            <div class="clear"></div>
+                        }else{
+                            <div class="set"></div>
+                        }
                         </div>
                     }
                     </div>
@@ -69,8 +66,7 @@
         <div class="blockcontainer">
             <div class="row justify-content-center">
                    <div class="col-3 box">
-                       <div class="block">
-                           <div  id="1" onclick="nextMove(this);">
+                       <div class="block" id="1">
                                 @for(col <- 0 until controller.b1.blockmaxy){
                                     <div class="cellRow">
                                     @for(row <- 0 until controller.b1.blockmaxx) {
@@ -80,38 +76,36 @@
                                         </div>
                                     }
                                     </div>
-                                }</div>
+                                }
                         </div>
                    </div>
                     <div class="col-3 box">
-                        <div class="block">
-                            <div  id="2" onclick="nextMove(this);">
-                        @for(col <- 0 until controller.b2.blockmaxy){
-                            <div class="cellRow">
-                            @for(row <- 0 until controller.b2.blockmaxx) {
-                                <div class="blockCell">
-                                @if(controller.getCellStatusAtBlock(2,row,col)==0){<div class="blockClear"></div>
-                                }else{ <div class="blockSet"></div> }
+                        <div class="block" id="2">
+                            @for(col <- 0 until controller.b2.blockmaxy){
+                                <div class="cellRow">
+                                @for(row <- 0 until controller.b2.blockmaxx) {
+                                    <div class="blockCell">
+                                    @if(controller.getCellStatusAtBlock(2,row,col)==0){<div class="blockClear"></div>
+                                    }else{ <div class="blockSet"></div> }
+                                    </div>
+                                }
                                 </div>
                             }
-                            </div>
-                        }</div>
-                    </div>
+                        </div>
                     </div>
                     <div class="col-3 box">
-                        <div class="block">
-                            <div  id="3" onclick="nextMove(this);">
-                        @for(col <- 0 until controller.b3.blockmaxy){
-                            <div class="cellRow">
-                            @for(row <- 0 until controller.b3.blockmaxx) {
-                                <div class="blockCell">
-                                @if(controller.getCellStatusAtBlock(3,row,col)==0){<div class="blockClear"></div>
-                                }else{ <div class="blockSet"></div> }
+                        <div class="block" id="3">
+                            @for(col <- 0 until controller.b3.blockmaxy){
+                                <div class="cellRow">
+                                @for(row <- 0 until controller.b3.blockmaxx) {
+                                    <div class="blockCell">
+                                    @if(controller.getCellStatusAtBlock(3,row,col)==0){<div class="blockClear"></div>
+                                    }else{ <div class="blockSet"></div> }
+                                    </div>
+                                }
                                 </div>
                             }
-                            </div>
-                        }</div>
-                    </div>
+                        </div>
                     </div>
             </div>
         </div>

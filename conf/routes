@@ -8,18 +8,20 @@ GET    /                           controllers.BlockpuzzleController.woodblock
 
 GET    /about                      controllers.BlockpuzzleController.about
 
-GET    /reset                       controllers.BlockpuzzleController.reset
+GET    /reset                      controllers.BlockpuzzleController.reset
 
-GET    /add/:b/:x/:y                controllers.BlockpuzzleController.add(b:Int, x:Int, y:Int)
+GET    /add/:b/:x/:y               controllers.BlockpuzzleController.add(b:Int, x:Int, y:Int)
 
-GET    /addChoosen/:x/:y            controllers.BlockpuzzleController.addChosen(x:Int, y:Int)
+GET    /addChoosen/:x/:y           controllers.BlockpuzzleController.addChosen(x:Int, y:Int)
 
-GET    /setChoosen/:b               controllers.BlockpuzzleController.setChosen(b:Int)
+GET    /setChoosen/:b              controllers.BlockpuzzleController.setChosen(b:Int)
 
-GET    /giveup                           controllers.BlockpuzzleController.giveup
+GET    /giveup                     controllers.BlockpuzzleController.giveup
 
-GET    /undo                           controllers.BlockpuzzleController.undo
+GET    /undo                       controllers.BlockpuzzleController.undo
+
+GET    /json                       controllers.BlockpuzzleController.actionJson
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file              controllers.Assets.versioned(path="/public", file: Asset)

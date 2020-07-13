@@ -1,8 +1,11 @@
 logs
 target
+node_modules
+/.g8
 /.idea
 /.idea_modules
 /.classpath
 /.project
 /.settings
 /RUNNING_PID
+
