@@ -3,18 +3,25 @@ package controllers
 import javax.inject._
 import play.api.mvc._
 import de.htwg.se.blockpuzzle.BlockPuzzle
-import play.api.libs.json.{JsObject, JsValue, Json}
+import play.api.libs.json.JsObject
 import play.api.libs.json.Json._
 import de.htwg.se.blockpuzzle.controller.Controller
+import play.api.libs.streams.ActorFlow
+import akka.actor._
+import de.htwg.se.blockpuzzle.controller.FieldChanged
+import akka.actor.ActorSystem
+import akka.stream.Materializer
+
+import scala.swing.Reactor
 
 @Singleton
-class BlockpuzzleController @Inject() (cc: ControllerComponents) extends AbstractController(cc){
+class BlockpuzzleController @Inject() (cc: ControllerComponents) (implicit system: ActorSystem, mat: Materializer)extends AbstractController(cc){
         val gameController = BlockPuzzle.controller
 
         def getText(): String ={
-                var BlockPuzzleastext = "COUNT: "+ gameController.returnCount + "\t HIGHSCORE: "+ gameController.returnHighscore +
+                val BlockPuzzleastext = "COUNT: " + gameController.returnCount + "\t HIGHSCORE: " + gameController.returnHighscore +
                   "\n" + gameController.showFieldWithCoordinates() + "\n" + gameController.showBlock(1) +
-                  "\n" + gameController.showBlock(2) + "\n" + gameController.showBlock(3)+
+                  "\n" + gameController.showBlock(2) + "\n" + gameController.showBlock(3) +
                   "\n " + gameController.statusText
                 BlockPuzzleastext
         }
@@ -23,7 +30,7 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) extends Abstrac
                 Ok(views.html.index())
         }
 
-        def woodblock = Action {
+        def blockpuzzle = Action {
                 Ok(views.html.BlockPuzzle(gameController))
         }
 
@@ -65,7 +72,41 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) extends Abstrac
                 )
         }
 
-        def actionJson = Action {
+        def loadJason = Action {
                 Ok(fieldToJson(gameController))
+        }
+
+
+        def websocket = WebSocket.accept[String, String] { request =>
+                ActorFlow.actorRef { out =>
+                        println("Connection received")
+                        BlockWebSocketActorFactory.create(out)
+                }
+
+        }
+
+        object BlockWebSocketActorFactory {
+                def create(out: ActorRef) = {
+                        Props(new BlockWebSocketActor(out))
+                }
+        }
+
+        class BlockWebSocketActor(out: ActorRef) extends Actor with Reactor{
+                listenTo(gameController)
+
+                def receive = {
+                        case msg: String =>
+                                out ! (fieldToJson(gameController).toString())
+                                println("Sent Json to Client"+ msg)
+                }
+
+                reactions += {
+                        case event: FieldChanged => sendJsonToClient
+                }
+
+                def sendJsonToClient = {
+                        println("Received event from Controller")
+                        out ! (fieldToJson(gameController).toString())
+                }
         }
 }

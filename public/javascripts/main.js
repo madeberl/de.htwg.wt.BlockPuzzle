@@ -1,13 +1,54 @@
+function connectWebSocket() {
+    var websocket = new WebSocket("ws://localhost:9000/websocket");
+    websocket.setTimeout
+
+    websocket.onopen = function(event) {
+        console.log("Connected to Websocket");
+    }
+
+    websocket.onclose = function () {
+        console.log('Connection with Websocket Closed!');
+        setTimeout(function () {
+            connectWebSocket();
+        }, 1000);
+
+    };
+
+    websocket.onerror = function (error) {
+        console.log('Error in Websocket Occured: ' + error);
+    };
+
+    websocket.onmessage = function (e) {
+        if (typeof e.data === "string") {
+            let json = JSON.parse(e.data);
+            game.fill(json);
+            update(game);
+            registerClickListener();
+        }
+
+    };
+}
+
 $(document).ready(function () {
-    addClickEvent();
+    loadJson();
+    connectWebSocket();
     $("#new").on("click", function() {
         return confirm('Sicher? Alle Fortschritte gehen verloren');
     });
 
 });
 
-function addClickEvent() {
-    var id;
+$(document).ready(function () {
+    loadJson()
+    connectWebSocket();
+    $("#giveup").on("click", function() {
+        return confirm('Sicher? Alle Fortschritte gehen verloren');
+    });
+
+});
+
+function registerClickListener() {
+    let id;
     $(".block").click(function() {
         id = $(this).attr('id');
         console.log("id: " + id);
@@ -19,7 +60,7 @@ function addClickEvent() {
         var row = cellId[1];
         $(".cell").off("click");
         $(".block").off("click");
-        setBlock(id, col, row);
+            setBlock(id, col, row);
     });
 }
 
@@ -44,6 +85,7 @@ class Blockpuzzle {
         for(i = 0; i < this.field.length; i++) {
             this.field[i] = this.field[i].split(" ");
         }
+
 
         if (this.b1 !== "") {
             this.b1 = json.b1.split(" \n");
@@ -73,7 +115,7 @@ class Blockpuzzle {
 
 let game = new Blockpuzzle();
 
-function ajaxReload() {
+function loadJson() {
     $.ajax({
         method: "GET",
         url: "/json",
@@ -83,27 +125,31 @@ function ajaxReload() {
             game = new Blockpuzzle();
             game.fill(result);
             update(game);
-            addClickEvent();
+            registerClickListener();
         }
     });
 }
 
 function setBlock(block, x, y) {
-    if(block !== undefined) {
-        $.get("/add/" + block + "/" + x + "/" + y, function (data) {
+    $(".cell").off("click");
+    $(".block").off("click");
+
+    $.get("/add/" + block + "/" + x + "/" + y, function (data) {
+        if(x>7 || x<0 || y<0 || y>7) {
+            console.log("Error");
+        } else {
             console.log("Set block " + block + " on " + x + "," + y);
-        });
-    }
-    ajaxReload();
+        }
+    });
 }
 
 function update(game) {
-    $("#count").text("Count: " + game.count);
+    $("#count").text("Punkte: " + game.count);
     $("#highscore").text("Highscore: " + game.highscore);
-    $("#status").text("Last action: " + game.statusText);
+    $("#status").text("Letzte Aktion: " + game.statusText);
 
     $(".cell").each(function() {
-        var id = $(this).attr('id').split("/"); //.split('/');
+        var id = $(this).attr('id').split("/");
         var col = parseInt(id[0]) - 1;
         var row = parseInt(id[1]) - 1;
 
