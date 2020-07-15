@@ -1,0 +1,7 @@
+{
+  "name": "blockpuzzle",
+  "short_name": "blockpuzzle",
+  "description": "Blockpuzzle for Webtechnologie",
+  "start_url": "/",
+  "display": "standalone"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "blockpuzzle",
+  "homepage": "https://github.com/madeberl/de.htwg.wt.BlockPuzzle",
+  "authors": [
+  ],
+  "description": "Blockpuzzle for Webtechnologies",
+  "main": "app/views/index.html",
+  "keywords": [
+    "blockpuzzle"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^3.4.1"
+  }
+}

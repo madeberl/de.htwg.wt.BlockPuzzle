@@ -109,4 +109,8 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) (implicit syste
                         out ! (fieldToJson(gameController).toString())
                 }
         }
+
+        def blockpuzzlepolymer = Action  {
+                Ok(views.html.blockpuzzlepolymer())
+        }
 }
