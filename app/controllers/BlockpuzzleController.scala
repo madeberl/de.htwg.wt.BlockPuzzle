@@ -44,10 +44,12 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) (implicit syste
                 gameController.reset
                 Ok(views.html.BlockPuzzle(gameController))
         }
+
         def add(b:Int, x:Int, y:Int) = Action{
                 gameController.addBlock(b,x,y)
                 Ok(views.html.BlockPuzzle(gameController))
         }
+
         def addChosen(x:Int, y:Int)= Action{
                 gameController.addBlock(gameController.getChosenBlock(),x,y)
                 Ok(views.html.BlockPuzzle(gameController))

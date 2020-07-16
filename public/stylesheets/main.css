@@ -38,6 +38,19 @@ h1, h3{
     padding-left: 6%;
 }
 
+.block:hover {
+    text-decoration:none;
+    cursor:pointer;
+    transform: scale(1.1);
+}
+
+.cell:hover{
+    color: rgb(30, 144, 255);
+    text-decoration:none;
+    cursor:pointer;
+    transform: scale(1.1);
+}
+
 #game {
     width: var(--game);
     height: var(--game);
@@ -64,12 +77,7 @@ h1, h3{
 
 }
 
-.cell:hover{
-    color: rgb(30, 144, 255);
-    text-decoration:none;
-    cursor:pointer;
-    transform: scale(1.1);
-}
+
 
 .clear{
     background-color: grey;
@@ -113,11 +121,7 @@ h1, h3{
     box-shadow: 0px 0px 20px 2px rgba(0,0,0,1)
 }
 
-.block:hover {
-    text-decoration:none;
-    cursor:pointer;
-    transform: scale(1.1);
-}
+
 
 .text{
     font-family: "Verdana",Geneva, sans-serif;
