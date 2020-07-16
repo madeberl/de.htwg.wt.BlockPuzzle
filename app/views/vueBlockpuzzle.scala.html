@@ -1,0 +1,120 @@
+@(controller:de.htwg.se.blockpuzzle.controller.Controller)
+@size= @{ controller.fieldsize }
+<!DOCTYPE html>
+
+@main("HTWG Blockpuzzle") {
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="@routes.Assets.versioned("javascripts/vue.js")" ></script>
+    <script src="@routes.Assets.versioned("javascripts/blockpuzzlevue.js")" ></script>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">HTWG Block Puzzle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="collapsingNavbar">
+            <ul class="navbar-nav abs">
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                    data-toggle="dropdown" href="#" id="navbarDropdownMenuLink" role="button">
+                        Options
+                    </a>
+                    <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+                        <a id="new" class="dropdown-item" href="/reset">New Game</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/undo">Undo</a>
+                        <a id="giveup" class="dropdown-item" href="/giveup">Give it up</a>
+                    </div>
+                </li>
+                <li class="nav-link">
+                    <a class="nav-item" href="/about">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <span class="navbar-text" id="count">
+                @{"Punkte: "+controller.returnCount}
+                </span>
+                <li role="separator" class="divider"></li>
+                <span class="navbar-text" id="highscore">
+                @{"Highscore: "+controller.returnHighscore}
+                </span>
+            </ul>
+        </div>
+    </nav>
+    <div class="BlockPuzzleController">
+        @*Section for Count and Highscore*@
+        <div class="row" id="infosAndGame">
+            <div class = "col-sm-4" id = "infos">
+                <div class="text" id = "status">
+                    Letze Aktion: @{controller.statusText}
+                </div>
+            </div>
+            @*Section for field*@
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12" id="game" align="center">
+            @for(col <- 1 to size){
+                <div class="cellRow">
+                @for(row <- 1 to size) {
+                    <div class="cell" id="@row/@col">
+                    @if(controller.getCellStatusAtField(row,col)==0){
+                        <div class="clear"></div>
+                    }else{
+                        <div class="set"></div>
+                    }
+                    </div>
+                }
+                </div>
+            }
+            </div>
+        </div>
+        @*Section for the 3 Blocks*@
+        <div class="blockcontainer">
+            <div class="row justify-content-center">
+                <div class="col-3 box">
+                    <div class="block" id="1">
+                    @for(col <- 0 until controller.b1.blockmaxy){
+                        <div class="cellRow">
+                        @for(row <- 0 until controller.b1.blockmaxx) {
+                            <div class="blockCell">
+                            @if(controller.getCellStatusAtBlock(1,row,col)==0){<div class="blockClear"></div>
+                            }else{ <div class="blockSet"></div> }
+                            </div>
+                        }
+                        </div>
+                    }
+                    </div>
+                </div>
+                <div class="col-3 box">
+                    <div class="block" id="2">
+                    @for(col <- 0 until controller.b2.blockmaxy){
+                        <div class="cellRow">
+                        @for(row <- 0 until controller.b2.blockmaxx) {
+                            <div class="blockCell">
+                            @if(controller.getCellStatusAtBlock(2,row,col)==0){<div class="blockClear"></div>
+                            }else{ <div class="blockSet"></div> }
+                            </div>
+                        }
+                        </div>
+                    }
+                    </div>
+                </div>
+                <div class="col-3 box">
+                    <div class="block" id="3">
+                    @for(col <- 0 until controller.b3.blockmaxy){
+                        <div class="cellRow">
+                        @for(row <- 0 until controller.b3.blockmaxx) {
+                            <div class="blockCell">
+                            @if(controller.getCellStatusAtBlock(3,row,col)==0){<div class="blockClear"></div>
+                            }else{ <div class="blockSet"></div> }
+                            </div>
+                        }
+                        </div>
+                    }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="center">
+    <img class="imageBackground" src=@routes.Assets.versioned("images/background.jpg")>
+</div>

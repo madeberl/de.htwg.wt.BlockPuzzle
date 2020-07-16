@@ -12,10 +12,11 @@ import de.htwg.se.blockpuzzle.controller.FieldChanged
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 
+import scala.concurrent.{ExecutionContext, Future}
 import scala.swing.Reactor
 
 @Singleton
-class BlockpuzzleController @Inject() (cc: ControllerComponents) (implicit system: ActorSystem, mat: Materializer)extends AbstractController(cc){
+class BlockpuzzleController @Inject() (cc: ControllerComponents) (implicit system: ActorSystem, mat: Materializer, ec: ExecutionContext)extends AbstractController(cc){
         val gameController = BlockPuzzle.controller
 
         def getText(): String ={
@@ -32,6 +33,11 @@ class BlockpuzzleController @Inject() (cc: ControllerComponents) (implicit syste
 
         def blockpuzzle = Action {
                 Ok(views.html.BlockPuzzle(gameController))
+        }
+
+        def vueblockpuzzle = Action.async {
+                gameController.reset
+                Future(Ok(views.html.vueBlockpuzzle(gameController)))
         }
 
         def reset = Action {

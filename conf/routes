@@ -26,5 +26,7 @@ GET     /websocket                  controllers.BlockpuzzleController.websocket
 
 GET     /polymer                    controllers.BlockpuzzleController.blockpuzzlepolymer
 
+GET     /vueblockpuzzle             controllers.BlockpuzzleController.vueblockpuzzle
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file              controllers.Assets.versioned(path="/public", file: Asset)
